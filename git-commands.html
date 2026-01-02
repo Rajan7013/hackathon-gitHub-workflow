@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Git Commands - ByteQuest Guide</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="chat-widget.css">
+</head>
+
+<body>
+    <div class="container">
+        <nav class="nav">
+            <div class="nav-left">
+                <a href="index.html">📚 Main</a>
+                <a href="team-workflow.html">👥 Team</a>
+                <a href="safe-pull.html">🔄 Pull</a>
+                <a href="git-commands.html" class="active">💻 Commands</a>
+                <a href="branch-work.html">🌿 Branch</a>
+                <a href="commits-count.html">✅ Commits</a>
+            </div>
+            <div class="nav-right">
+                <button class="speaker-btn-small" id="speakBtn" onclick="toggleSpeech()">🔊 Read</button>
+                <button class="speaker-btn-small" onclick="stopSpeech()">⏹️</button>
+            </div>
+        </nav>
+
+        <div class="content">
+            <h2>📋 Quick Status Check Commands</h2>
+
+            <h3>1. Which branch am I on?</h3>
+            <pre><code>git branch
+
+Output:
+  feature/backend-api
+* feature/frontend-ui    ← You are here (*)
+  main</code></pre>
+
+            <h3>2. Which repository am I connected to?</h3>
+            <pre><code>git remote -v
+
+Output:
+origin  https://github.com/Rajan7013/GFGBQ-Team-creativity-minds.git (fetch)
+origin  https://github.com/Rajan7013/GFGBQ-Team-creativity-minds.git (push)</code></pre>
+
+            <h3>3. Do I have uncommitted changes?</h3>
+            <pre><code>git status
+
+Output if you have changes:
+On branch feature/frontend-ui
+Changes not staged for commit:
+  modified:   src/App.js
+  
+Untracked files:
+  src/components/Navbar.js
+
+Output if clean:
+On branch feature/frontend-ui
+nothing to commit, working tree clean</code></pre>
+
+            <h3>4. What have I changed?</h3>
+            <pre><code>git diff
+
+# Shows line-by-line changes in your files</code></pre>
+
+            <h2>🌿 Branch Management Commands</h2>
+
+            <h3>See All Branches</h3>
+            <pre><code>git branch -a
+
+Output:
+* feature/backend-api           ← You are here
+  feature/frontend-ui
+  main
+  remotes/origin/main
+  remotes/origin/feature/ai-service</code></pre>
+
+            <h3>Create New Branch</h3>
+            <pre><code>git checkout -b feature/new-feature
+
+Output:
+Switched to a new branch 'feature/new-feature'</code></pre>
+
+            <h3>Switch Between Branches</h3>
+            <pre><code># Go to main
+git checkout main
+
+# Go to your feature branch
+git checkout feature/backend-api</code></pre>
+
+            <h3>Delete Branch (After Merged)</h3>
+            <pre><code># Delete local branch
+git branch -D feature/old-branch
+
+# Delete remote branch
+git push origin --delete feature/old-branch</code></pre>
+
+            <h2>📤 Push Commands</h2>
+
+            <h3>Check Where Your Push Will Go</h3>
+            <pre><code>git remote -v
+
+Output:
+origin  https://github.com/Rajan7013/GFGBQ-Team-creativity-minds.git (push)
+                         ↑
+                    This is where it goes!</code></pre>
+
+            <h3>Push Your Branch</h3>
+            <pre><code># You're on feature/backend-api
+git push origin feature/backend-api
+
+What This Does:
+- Pushes YOUR branch to repository
+- Creates feature/backend-api branch on GitHub
+- Leader can see it and review</code></pre>
+
+            <h3>Push to Main (Usually Only Leader)</h3>
+            <pre><code>git push origin main</code></pre>
+
+            <h2>⚠️ NEVER DO THESE COMMANDS!</h2>
+
+            <div class="danger-box">
+                <h3>❌ NEVER: Force Reset (Deletes Your Work!)</h3>
+                <pre><code>git reset --hard HEAD  # ❌ NEVER! Deletes uncommitted changes!
+git reset --hard origin/main  # ❌ NEVER! Deletes everything!</code></pre>
+
+                <h3>❌ NEVER: Force Push (Can Break Team's Work!)</h3>
+                <pre><code>git push --force  # ❌ NEVER! Can delete others' work!
+git push -f       # ❌ NEVER! Same as above!</code></pre>
+
+                <h3>❌ NEVER: Delete .git Folder</h3>
+                <pre><code>rm -rf .git  # ❌ NEVER! Destroys entire Git history!</code></pre>
+
+                <h3>❌ NEVER: Commit Secrets</h3>
+                <pre><code>git add .env  # ❌ NEVER! Contains API keys!
+git add .env.local  # ❌ NEVER! Contains secrets!</code></pre>
+            </div>
+
+            <h2>🔒 .gitignore - ALWAYS Setup First!</h2>
+
+            <h3>Create .gitignore File</h3>
+            <pre><code># In your project root
+notepad .gitignore  # Windows
+# or
+nano .gitignore     # Mac/Linux</code></pre>
+
+            <h3>Add These Lines:</h3>
+            <pre><code># Environment Variables (NEVER commit these!)
+.env
+.env.local
+.env.development
+.env.production
+*.env
+
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build
+dist/
+build/
+*.log
+
+# Database
+*.sqlite
+*.db</code></pre>
+
+            <h3>Save and Commit</h3>
+            <pre><code>git add .gitignore
+git commit -m "Add .gitignore"
+git push origin main</code></pre>
+
+            <div class="success-box">
+                <p>✅ Now these files will NEVER be committed!</p>
+            </div>
+
+            <h2>🎯 Complete Workflow Example</h2>
+
+            <h3>Morning: You Start Working</h3>
+            <pre><code># 1. Check where you are
+git branch
+# Output: * main
+
+# 2. Create your feature branch
+git checkout -b feature/backend-api
+# Output: Switched to a new branch 'feature/backend-api'
+
+# 3. Start coding
+# Create files, write code...
+
+# 4. Commit every 30 minutes
+git add .
+git commit -m "Add user authentication"
+
+# 5. Continue coding...
+git add .
+git commit -m "Add database models"</code></pre>
+
+            <h3>Afternoon: Leader Says "Pull Main!"</h3>
+            <pre><code># 1. Check your status
+git status
+# Output: On branch feature/backend-api, nothing to commit
+
+# 2. Switch to main
+git checkout main
+
+# 3. Pull latest
+git pull origin main
+
+# 4. Back to your branch
+git checkout feature/backend-api
+
+# 5. Merge main into your branch
+git merge main
+
+# 6. Continue coding!</code></pre>
+
+            <h3>Evening: You're Done, Push Your Work</h3>
+            <pre><code># 1. Final commit
+git add .
+git commit -m "✅ Complete backend API"
+
+# 2. Push your branch
+git push origin feature/backend-api
+
+# 3. Go to GitHub, create PR</code></pre>
+
+            <h2>🎯 Quick Command Cheat Sheet</h2>
+
+            <div class="info-box">
+                <h3>Check Status</h3>
+                <pre><code>git branch              # Which branch am I on?
+git status              # Do I have changes?
+git remote -v           # Where am I pushing to?</code></pre>
+
+                <h3>Save Work</h3>
+                <pre><code>git add .               # Stage all changes
+git commit -m "msg"     # Save changes
+git stash save "msg"    # Temporarily save (if uncommitted)</code></pre>
+
+                <h3>Switch Branches</h3>
+                <pre><code>git checkout main                    # Go to main
+git checkout feature/my-branch       # Go to feature branch
+git checkout -b feature/new-branch   # Create and go to new branch</code></pre>
+
+                <h3>Sync with Team</h3>
+                <pre><code>git pull origin main              # Get latest from main
+git merge main                    # Bring main into your branch
+git push origin feature/my-branch # Send your work to GitHub</code></pre>
+
+                <h3>Get Work Back</h3>
+                <pre><code>git stash pop           # Get stashed work back
+git stash list          # See all stashed work</code></pre>
+            </div>
+
+            <h2>⚠️ Critical Rules for Hackathon</h2>
+
+            <div class="success-box">
+                <h3>✅ ALWAYS DO:</h3>
+                <ul>
+                    <li>Create .gitignore first thing</li>
+                    <li>Work on feature branches, not main</li>
+                    <li>Commit every 30 minutes</li>
+                    <li>Pull main before merging your PR</li>
+                    <li>Check git status before pulling</li>
+                </ul>
+            </div>
+
+            <div class="danger-box">
+                <h3>❌ NEVER DO:</h3>
+                <ul>
+                    <li>Never commit .env files</li>
+                    <li>Never force push (git push -f)</li>
+                    <li>Never reset hard (git reset --hard)</li>
+                    <li>Never work directly on main</li>
+                    <li>Never delete .git folder</li>
+                </ul>
+            </div>
+
+            <h2>🆘 Emergency Commands</h2>
+
+            <h3>I Accidentally Committed .env!</h3>
+            <pre><code># Remove from Git but keep file
+git rm --cached .env
+git commit -m "Remove .env from tracking"
+
+# Add to .gitignore
+echo ".env" >> .gitignore
+git add .gitignore
+git commit -m "Add .env to gitignore"</code></pre>
+
+            <h3>I'm Lost, Where Am I?</h3>
+            <pre><code>git status
+git branch
+git remote -v
+git log --oneline -5</code></pre>
+
+            <h3>I Want to Undo Last Commit (But Keep Changes)</h3>
+            <pre><code>git reset --soft HEAD~1
+# Your changes are still there, just uncommitted</code></pre>
+
+            <h3>I Want to See What I Stashed</h3>
+            <pre><code>git stash list
+git stash show stash@{0}</code></pre>
+
+            <h2>✅ Summary</h2>
+
+            <div class="info-box">
+                <h3>To Pull Latest Code:</h3>
+                <pre><code># If uncommitted work:
+git stash save "My work"
+git checkout main
+git pull origin main
+git checkout feature/my-branch
+git merge main
+git stash pop
+
+# If committed work:
+git checkout main
+git pull origin main
+git checkout feature/my-branch
+git merge main</code></pre>
+
+                <h3>Never Commit:</h3>
+                <pre><code>.env
+.env.local
+node_modules/
+__pycache__/
+*.pyc</code></pre>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Team creativity-minds | ByteQuest 2026 | Good luck! 🚀</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="chat-widget.js"></script>
+</body>
+
+</html>

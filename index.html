@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ByteQuest Hackathon Guide - Team creativity-minds</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="chat-widget.css">
+</head>
+
+<body>
+    <div class="container">
+        <nav class="nav">
+            <div class="nav-left">
+                <a href="index.html" class="active">📚 Main</a>
+                <a href="team-workflow.html">👥 Team</a>
+                <a href="safe-pull.html">🔄 Pull</a>
+                <a href="git-commands.html">💻 Commands</a>
+                <a href="branch-work.html">🌿 Branch</a>
+                <a href="commits-count.html">✅ Commits</a>
+            </div>
+            <div class="nav-right">
+                <button class="speaker-btn-small" id="speakBtn" onclick="toggleSpeech()">🔊 Read</button>
+                <button class="speaker-btn-small" onclick="stopSpeech()">⏹️</button>
+            </div>
+        </nav>
+
+        <div class="content">
+            <h2>🎯 ByteQuest Complete Guide</h2>
+
+            <div class="info-box">
+                <h3>📅 Timeline Overview</h3>
+                <ul>
+                    <li><strong>Dec 27 - Jan 2:</strong> Registration Period</li>
+                    <li><strong>Jan 3, 1:00 PM:</strong> Problem Statements Released</li>
+                    <li><strong>Jan 3, 2:00 PM:</strong> Coding Begins (24-hour hackathon starts)</li>
+                    <li><strong>Jan 4, 2:00 PM:</strong> Coding Ends (Final submission deadline)</li>
+                </ul>
+            </div>
+
+            <h3>⚠️ CRITICAL RULE: Fork Repository</h3>
+            <div class="danger-box">
+                <p><strong>MUST DO:</strong> After selecting problem statement, fork the repository assigned to your
+                    team!</p>
+                <p><strong>Repository:</strong> <code>ByteQuest-2025/GFGBQ-Team-creativity-minds</code></p>
+                <p><strong>Your Fork:</strong> <code>Rajan7013/GFGBQ-Team-creativity-minds</code></p>
+            </div>
+
+            <h3>📋 Step-by-Step Process</h3>
+
+            <h4>Step 1: Accept Invitation (NOW!)</h4>
+            <pre><code>1. Check email from GfG-RBU
+2. Click "View invitation"
+3. Accept invitation to ByteQuest-2025/GFGBQ-Team-creativity-minds</code></pre>
+
+            <h4>Step 2: Fork Repository (Jan 3, 2:00 PM)</h4>
+            <pre><code>1. Go to: https://github.com/ByteQuest-2025/GFGBQ-Team-creativity-minds
+2. Click "Fork" button (top right)
+3. Fork to: Rajan7013 account
+4. Now you have: https://github.com/Rajan7013/GFGBQ-Team-creativity-minds</code></pre>
+
+            <h4>Step 3: Add Team Members</h4>
+            <pre><code>1. Go to your forked repo settings
+2. Click "Collaborators"
+3. Add each team member by GitHub username
+4. They receive invitation emails</code></pre>
+
+            <h4>Step 4: Update README (Check-In)</h4>
+            <div class="success-box">
+                <p><strong>Leader updates README with:</strong></p>
+                <ul>
+                    <li>Team name: creativity-minds</li>
+                    <li>All member names and roles</li>
+                    <li>Selected problem statement</li>
+                    <li>Tech stack</li>
+                </ul>
+            </div>
+
+            <h4>Step 5: Everyone Clones</h4>
+            <pre><code>git clone https://github.com/Rajan7013/GFGBQ-Team-creativity-minds.git
+cd GFGBQ-Team-creativity-minds</code></pre>
+
+            <h3>⏰ 3-Hour Commit Rule</h3>
+            <div class="warning-box">
+                <p><strong>MUST:</strong> Make at least one meaningful code commit every 3 hours!</p>
+                <p><strong>Recommended:</strong> Commit every 30 minutes for safety!</p>
+                <p><strong>Commits must be meaningful:</strong> Features, fixes, improvements, or documentation</p>
+            </div>
+
+            <h4>Good Commit Messages:</h4>
+            <pre><code>✅ "Add user authentication with JWT"
+✅ "Implement AI text simplification feature"
+✅ "Create responsive navbar component"
+✅ "Fix database connection bug"</code></pre>
+
+            <h4>Bad Commit Messages:</h4>
+            <pre><code>❌ "update"
+❌ "test"
+❌ "changes"
+❌ "fix"</code></pre>
+
+            <h3>🎬 Demo Video Requirement</h3>
+            <div class="info-box">
+                <p><strong>Required:</strong> 2-minute demo video</p>
+                <p><strong>Structure:</strong></p>
+                <ul>
+                    <li>0:00-0:20 - Problem Statement</li>
+                    <li>0:20-0:40 - Solution Overview</li>
+                    <li>0:40-1:40 - Live Demo</li>
+                    <li>1:40-2:00 - Impact & Future Scope</li>
+                </ul>
+            </div>
+
+            <h3>🏆 Judging Criteria</h3>
+            <ol>
+                <li><strong>Problem & Solution Fit:</strong> How well does it solve the problem?</li>
+                <li><strong>Innovation & Creativity:</strong> How original is the idea?</li>
+                <li><strong>Technology:</strong> How technically impressive?</li>
+                <li><strong>Impact & Practicality:</strong> Real-world usefulness?</li>
+            </ol>
+
+            <h3>📊 24-Hour Commit Schedule</h3>
+            <pre><code>2:00 PM - Initial commit (setup, README)
+5:00 PM - First feature commit
+8:00 PM - Second feature commit
+11:00 PM - Third feature commit
+2:00 AM - Fourth feature commit
+5:00 AM - Fifth feature commit
+8:00 AM - Sixth feature commit
+11:00 AM - Seventh feature commit
+2:00 PM - Final commit (submission)</code></pre>
+
+            <h3>✅ Final Checklist</h3>
+            <div class="success-box">
+                <h4>Before Hackathon:</h4>
+                <ul>
+                    <li>Team registered on Unstop</li>
+                    <li>All members joined Discord</li>
+                    <li>GitHub accounts ready</li>
+                    <li>Development environment setup</li>
+                </ul>
+
+                <h4>During Hackathon:</h4>
+                <ul>
+                    <li>Fork repository</li>
+                    <li>Update README with team info</li>
+                    <li>Commit every 30 minutes</li>
+                    <li>Create meaningful commits</li>
+                    <li>Record demo video</li>
+                </ul>
+
+                <h4>Final Submission:</h4>
+                <ul>
+                    <li>Stop coding at 1:45 PM</li>
+                    <li>Final commit at 1:50 PM</li>
+                    <li>Push to GitHub at 1:55 PM</li>
+                    <li>Verify all files on GitHub</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Team creativity-minds | ByteQuest 2026 | Good luck! 🚀</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="chat-widget.js"></script>
+</body>
+
+</html>

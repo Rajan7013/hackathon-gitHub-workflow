@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Workflow - ByteQuest Guide</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="chat-widget.css">
+</head>
+
+<body>
+    <div class="container">
+        <nav class="nav">
+            <div class="nav-left">
+                <a href="index.html">📚 Main</a>
+                <a href="team-workflow.html" class="active">👥 Team</a>
+                <a href="safe-pull.html">🔄 Pull</a>
+                <a href="git-commands.html">💻 Commands</a>
+                <a href="branch-work.html">🌿 Branch</a>
+                <a href="commits-count.html">✅ Commits</a>
+            </div>
+            <div class="nav-right">
+                <button class="speaker-btn-small" id="speakBtn" onclick="toggleSpeech()">🔊 Read</button>
+                <button class="speaker-btn-small" onclick="stopSpeech()">⏹️</button>
+            </div>
+        </nav>
+
+        <div class="content">
+            <h2>🎯 Complete Team Workflow</h2>
+
+            <div class="info-box">
+                <p>This guide shows EXACTLY what each person sees on their screen at every step.</p>
+            </div>
+
+            <h3>📋 PHASE 1: Leader Initializes README</h3>
+
+            <h4>Option A: Leader Uses GitHub UI (Easiest!)</h4>
+
+            <div class="success-box">
+                <p><strong>Step 1: Leader Goes to Forked Repo</strong></p>
+                <p>URL: <code>https://github.com/Rajan7013/GFGBQ-Team-creativity-minds</code></p>
+            </div>
+
+            <pre><code>What Leader Sees:
+┌─────────────────────────────────────────┐
+│ Rajan7013 / GFGBQ-Team-creativity-minds │
+│ forked from ByteQuest-2025/...          │
+├─────────────────────────────────────────┤
+│ 📄 README.md                            │
+│ 📄 .gitignore                           │
+│                                          │
+│ Click on README.md ──────────────────►  │
+└─────────────────────────────────────────┘</code></pre>
+
+            <p><strong>Step 2: Leader Clicks README.md</strong></p>
+            <pre><code>What Leader Sees:
+┌─────────────────────────────────────────┐
+│ README.md                               │
+├─────────────────────────────────────────┤
+│ # Team creativity-minds                 │
+│                                          │
+│ (Empty or basic template)               │
+│                                          │
+│ [✏️ Edit this file] ◄── Click pencil   │
+└─────────────────────────────────────────┘</code></pre>
+
+            <p><strong>Step 3: Leader Edits README</strong></p>
+            <pre><code># Team Name: creativity-minds
+
+## Team Members
+1. Rajan Prasaila Yadav (Leader) - AI & QA Lead
+2. Member 2 Name - Backend Developer
+3. Member 3 Name - Frontend Developer
+
+## Problem Statement
+Problem Statement 2: AI-Powered Study Assistant
+
+## Tech Stack
+- Frontend: React
+- Backend: FastAPI
+- AI: Groq LLaMA 3.3 70B</code></pre>
+
+            <p><strong>Step 4: Leader Commits</strong></p>
+            <div class="success-box">
+                <p>Commit message: <code>✅ Team check-in - Add team information</code></p>
+                <p>Select: "Commit directly to the main branch"</p>
+                <p>Click: "Commit changes"</p>
+            </div>
+
+            <h3>📋 PHASE 2: Team Members Clone Repository</h3>
+
+            <h4>Step 1: Member Receives Invitation</h4>
+            <pre><code>Email from GitHub:
+┌─────────────────────────────────────────┐
+│ 📧 From: GitHub                         │
+│ Subject: Rajan7013 invited you          │
+├─────────────────────────────────────────┤
+│ Rajan7013 has invited you to           │
+│ collaborate on GFGBQ-Team-creativity... │
+│                                          │
+│ [View invitation] ◄── Click this       │
+└─────────────────────────────────────────┘</code></pre>
+
+            <h4>Step 2: Member Accepts Invitation</h4>
+            <pre><code>On GitHub:
+┌─────────────────────────────────────────┐
+│ You've been invited to collaborate     │
+│ Rajan7013/GFGBQ-Team-creativity-minds  │
+├─────────────────────────────────────────┤
+│ [Accept invitation] ◄── Click          │
+│ [Decline]                               │
+└─────────────────────────────────────────┘</code></pre>
+
+            <h4>Step 3: Member Clones Repository</h4>
+            <pre><code>cd Desktop
+git clone https://github.com/Rajan7013/GFGBQ-Team-creativity-minds.git
+cd GFGBQ-Team-creativity-minds</code></pre>
+
+            <div class="success-box">
+                <p><strong>Member Now Has:</strong></p>
+                <pre><code>Desktop/
+└── GFGBQ-Team-creativity-minds/
+    ├── README.md  ← Updated by leader
+    ├── .gitignore
+    └── (other files)</code></pre>
+            </div>
+
+            <h3>📋 PHASE 3: Member Creates Branch & Codes</h3>
+
+            <h4>Step 1: Create Feature Branch</h4>
+            <pre><code>git checkout -b feature/ai-service
+
+Output:
+Switched to a new branch 'feature/ai-service'</code></pre>
+
+            <h4>Step 2: Write Code</h4>
+            <pre><code>mkdir ai-service
+cd ai-service
+# Create ai_service.py, prompts.py, etc.</code></pre>
+
+            <h4>Step 3: Commit Work</h4>
+            <pre><code>git add .
+git commit -m "✅ Add AI service with 3 complexity modes"
+
+Output:
+[feature/ai-service a1b2c3d] ✅ Add AI service...
+ 10 files changed, 2377 insertions(+)</code></pre>
+
+            <h4>Step 4: Push Branch</h4>
+            <pre><code>git push origin feature/ai-service
+
+Output:
+To https://github.com/Rajan7013/GFGBQ-Team-creativity-minds.git
+ * [new branch]      feature/ai-service -> feature/ai-service</code></pre>
+
+            <h3>📋 PHASE 4: Create Pull Request</h3>
+
+            <div class="warning-box">
+                <p><strong>Member Goes to GitHub</strong></p>
+                <p>Yellow banner appears:</p>
+                <pre><code>⚠️ feature/ai-service had recent pushes
+[Compare & pull request] ◄── Click this!</code></pre>
+            </div>
+
+            <h4>Pull Request Form</h4>
+            <pre><code>Title: ✅ Add AI service with 3 complexity modes
+
+Description:
+## What I Did
+- Implemented AI service using Groq
+- Created 3 modes (5-year-old, teen, adult)
+- Added comprehensive prompts
+- All tests passing (6/6)
+
+## Ready for Review
+@Rajan7013 please review!</code></pre>
+
+            <h3>📋 PHASE 5: Leader Reviews & Merges</h3>
+
+            <h4>Leader Sees Notification</h4>
+            <pre><code>GitHub Repository:
+┌─────────────────────────────────────────┐
+│ [Code] [Issues] [Pull requests (1)]     │
+│                              ↑           │
+│                         See the 1!      │
+└─────────────────────────────────────────┘</code></pre>
+
+            <h4>Leader Reviews Code</h4>
+            <div class="info-box">
+                <ul>
+                    <li>Click "Pull requests"</li>
+                    <li>Click on PR #1</li>
+                    <li>Review "Files changed"</li>
+                    <li>Click "Review changes"</li>
+                    <li>Select "Approve"</li>
+                    <li>Click "Submit review"</li>
+                </ul>
+            </div>
+
+            <h4>Leader Merges</h4>
+            <pre><code>1. Click "Merge pull request"
+2. Confirm merge
+3. Click "Delete branch" (cleanup)
+
+✅ PR merged successfully!</code></pre>
+
+            <h3>📋 PHASE 6: Team Pulls Latest</h3>
+
+            <div class="success-box">
+                <p><strong>Leader Informs Team:</strong></p>
+                <p>"Hi team! I've merged PR #1 (AI service) into main! Everyone please pull:"</p>
+                <pre><code>git checkout main
+git pull origin main</code></pre>
+            </div>
+
+            <h4>All Members Run:</h4>
+            <pre><code>cd GFGBQ-Team-creativity-minds
+git checkout main
+git pull origin main
+
+Output:
+From https://github.com/Rajan7013/GFGBQ-Team-creativity-minds
+ * branch            main       -> FETCH_HEAD
+Updating a1b2c3d..e4f5g6h
+Fast-forward
+ ai-service/ai_service.py | 250 ++++++++++++++
+ 10 files changed, 2377 insertions(+)</code></pre>
+
+            <h3>🔄 Complete Visual Workflow</h3>
+            <pre><code>LEADER              MEMBER              GITHUB
+  │                   │                     │
+  │ 1. Edit README    │                     │
+  │ ──────────────────────────────────────► │
+  │                   │                     │
+  │                   │ 2. Clone repo       │
+  │                   │ ───────────────────►│
+  │                   │                     │
+  │                   │ 3. Create branch    │
+  │                   │   git checkout -b   │
+  │                   │                     │
+  │                   │ 4. Write code       │
+  │                   │   (ai_service.py)   │
+  │                   │                     │
+  │                   │ 5. Commit           │
+  │                   │   git commit -m     │
+  │                   │                     │
+  │                   │ 6. Push branch      │
+  │                   │ ───────────────────►│
+  │                   │                     │
+  │                   │ 7. Create PR        │
+  │                   │ ───────────────────►│
+  │                   │                     │
+  │ 8. Review PR      │                     │
+  │ ──────────────────────────────────────► │
+  │                   │                     │
+  │ 9. Merge PR       │                     │
+  │ ──────────────────────────────────────► │
+  │                   │                     │
+  │ 10. Inform team   │                     │
+  │ ──────────────────►                     │
+  │                   │                     │
+  │                   │ 11. Pull latest     │
+  │                   │ ───────────────────►│
+  │                   │                     │
+  │                   │ ✅ All synced!      │</code></pre>
+
+            <h3>✅ Summary</h3>
+            <div class="success-box">
+                <h4>Leader Sees:</h4>
+                <ul>
+                    <li>README edit page on GitHub</li>
+                    <li>Pull Requests tab with notification</li>
+                    <li>PR details and "Files changed"</li>
+                    <li>"Merge pull request" button</li>
+                </ul>
+
+                <h4>Member Sees:</h4>
+                <ul>
+                    <li>Email invitation to collaborate</li>
+                    <li>Clone success in terminal</li>
+                    <li>Yellow banner "Compare & pull request"</li>
+                    <li>PR creation form</li>
+                    <li>Pull success after leader merges</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Team creativity-minds | ByteQuest 2026 | Good luck! 🚀</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="chat-widget.js"></script>
+</body>
+
+</html>

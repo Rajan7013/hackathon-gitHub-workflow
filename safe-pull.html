@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safe Pull Guide - ByteQuest Guide</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="chat-widget.css">
+</head>
+
+<body>
+    <div class="container">
+        <nav class="nav">
+            <div class="nav-left">
+                <a href="index.html">📚 Main</a>
+                <a href="team-workflow.html">👥 Team</a>
+                <a href="safe-pull.html" class="active">🔄 Pull</a>
+                <a href="git-commands.html">💻 Commands</a>
+                <a href="branch-work.html">🌿 Branch</a>
+                <a href="commits-count.html">✅ Commits</a>
+            </div>
+            <div class="nav-right">
+                <button class="speaker-btn-small" id="speakBtn" onclick="toggleSpeech()">🔊 Read</button>
+                <button class="speaker-btn-small" onclick="stopSpeech()">⏹️</button>
+            </div>
+        </nav>
+
+        <div class="content">
+            <h2>🎯 The Scenario</h2>
+
+            <div class="info-box">
+                <p><strong>Member 1:</strong> Pushed PR → Leader merged → Leader says "Everyone pull!"</p>
+                <p><strong>You (Member 2):</strong> Still coding, testing, fixing bugs</p>
+                <p><strong>Question:</strong> When I pull, will my work disappear? 🤔</p>
+            </div>
+
+            <div class="success-box">
+                <h3>✅ Answer: NO! Your work is SAFE!</h3>
+                <p>But you need to understand how Git works.</p>
+            </div>
+
+            <h2>📊 Scenario 1: Uncommitted Work (Most Common)</h2>
+
+            <h3>Your Situation:</h3>
+            <pre><code>You're coding on your computer:
+- Created files: backend/api.py, backend/models.py
+- Modified files: README.md
+- Testing, fixing bugs
+- NOT committed yet (no git commit)</code></pre>
+
+            <h3>❌ If You Pull Directly (DON'T DO THIS!)</h3>
+            <pre><code>git checkout main
+git pull origin main
+
+Git Will Say:
+error: Your local changes would be overwritten by merge
+Please commit your changes or stash them before you merge.
+Aborting</code></pre>
+
+            <div class="danger-box">
+                <p><strong>Result:</strong> Git STOPS you! Your work is SAFE but pull FAILS.</p>
+            </div>
+
+            <h3>✅ CORRECT Way: Stash Your Work First</h3>
+
+            <h4>Step 1: Save Your Work Temporarily</h4>
+            <pre><code>git stash save "My backend API work in progress"
+
+Output:
+Saved working directory and index state On main: 
+My backend API work in progress</code></pre>
+
+            <div class="info-box">
+                <p><strong>What This Does:</strong></p>
+                <ul>
+                    <li>Saves ALL your changes (new files, modified files)</li>
+                    <li>Puts them in a "safe box" (stash)</li>
+                    <li>Makes your working directory clean</li>
+                </ul>
+            </div>
+
+            <h4>Step 2: Pull Latest Changes</h4>
+            <pre><code>git pull origin main
+
+Output:
+From https://github.com/Rajan7013/GFGBQ-Team-creativity-minds
+ * branch            main       -> FETCH_HEAD
+Updating a1b2c3d..e4f5g6h
+Fast-forward
+ ai-service/ai_service.py | 250 ++++++++++++++
+ 10 files changed, 2377 insertions(+)</code></pre>
+
+            <div class="success-box">
+                <p><strong>What Happened:</strong></p>
+                <ul>
+                    <li>✅ Member 1's AI service code is now on your computer</li>
+                    <li>✅ Your work is still in the "safe box" (stash)</li>
+                </ul>
+            </div>
+
+            <h4>Step 3: Get Your Work Back</h4>
+            <pre><code>git stash pop
+
+Output:
+On branch main
+Changes not staged for commit:
+  modified:   README.md
+
+Untracked files:
+  backend/api.py
+  backend/models.py
+
+Dropped refs/stash@{0}</code></pre>
+
+            <h3>✅ Result: BOTH Codes Are There!</h3>
+            <pre><code>Your Computer Now Has:
+├── ai-service/          ← Member 1's code (from pull)
+│   ├── ai_service.py
+│   └── prompts.py
+├── backend/             ← YOUR code (from stash)
+│   ├── api.py
+│   └── models.py
+└── README.md            ← Modified by you</code></pre>
+
+            <h2>📊 Scenario 2: Committed Work on Feature Branch</h2>
+
+            <h3>Your Situation:</h3>
+            <pre><code>You're on your own branch:
+git checkout -b feature/backend-api
+
+You've committed:
+git add .
+git commit -m "Add backend API endpoints"
+
+But NOT pushed yet</code></pre>
+
+            <h3>What Happens When You Pull:</h3>
+
+            <h4>Step 1: Switch to Main</h4>
+            <pre><code>git checkout main
+
+Output:
+Switched to branch 'main'</code></pre>
+
+            <div class="success-box">
+                <p><strong>Your Work:</strong> Still SAFE on <code>feature/backend-api</code> branch!</p>
+            </div>
+
+            <h4>Step 2: Pull Latest</h4>
+            <pre><code>git pull origin main
+
+Output:
+Updating a1b2c3d..e4f5g6h
+Fast-forward
+ ai-service/ai_service.py | 250 ++++++++++++++
+ 10 files changed, 2377 insertions(+)</code></pre>
+
+            <h4>Step 3: Go Back to Your Branch</h4>
+            <pre><code>git checkout feature/backend-api
+
+Output:
+Switched to branch 'feature/backend-api'</code></pre>
+
+            <div class="success-box">
+                <p><strong>Your Work:</strong> Still there! Exactly as you left it!</p>
+            </div>
+
+            <h4>Step 4: Update Your Branch with Latest Main</h4>
+            <pre><code>git merge main
+
+Output:
+Merge made by the 'recursive' strategy.
+ ai-service/ai_service.py | 250 ++++++++++++++
+ 10 files changed, 2377 insertions(+)</code></pre>
+
+            <h3>✅ Result: BOTH Codes Combined!</h3>
+            <pre><code>Your feature/backend-api Branch Now Has:
+├── ai-service/          ← Member 1's code (from merge)
+│   ├── ai_service.py
+│   └── prompts.py
+├── backend/             ← YOUR code (your commits)
+│   ├── api.py
+│   └── models.py</code></pre>
+
+            <h2>📊 Scenario 3: Merge Conflicts</h2>
+
+            <h3>Your Situation:</h3>
+            <pre><code>Member 1 modified: README.md (added AI service info)
+You also modified: README.md (added backend info)</code></pre>
+
+            <h3>After git stash pop or git merge main:</h3>
+            <pre><code>Git Will Say:
+Auto-merging README.md
+CONFLICT (content): Merge conflict in README.md
+Automatic merge failed; fix conflicts and then commit</code></pre>
+
+            <h3>What You See in README.md:</h3>
+            <pre><code># Team creativity-minds
+
+## Team Members
+...
+
+<<<<<<< HEAD
+## AI Service
+- Using Groq LLaMA 3.3 70B
+- 3 complexity modes
+=======
+## Backend API
+- FastAPI endpoints
+- Database integration
+>>>>>>> main</code></pre>
+
+            <h3>How to Fix:</h3>
+
+            <h4>Step 1: Edit the File</h4>
+            <pre><code># Team creativity-minds
+
+## Team Members
+...
+
+## AI Service
+- Using Groq LLaMA 3.3 70B
+- 3 complexity modes
+
+## Backend API
+- FastAPI endpoints
+- Database integration</code></pre>
+
+            <h4>Step 2: Mark as Resolved</h4>
+            <pre><code>git add README.md
+git commit -m "Merge main - resolved conflicts"</code></pre>
+
+            <div class="success-box">
+                <p>✅ BOTH changes are kept! Nothing lost!</p>
+            </div>
+
+            <h2>🎯 Complete Safe Pull Workflow</h2>
+
+            <h3>If You're on Main with Uncommitted Work:</h3>
+            <pre><code># Step 1: Save your work
+git stash save "Work in progress"
+
+# Step 2: Pull latest
+git pull origin main
+
+# Step 3: Get your work back
+git stash pop
+
+# Step 4: Continue coding!</code></pre>
+
+            <h3>If You're on Feature Branch:</h3>
+            <pre><code># Step 1: Commit your current work
+git add .
+git commit -m "WIP: Backend API endpoints"
+
+# Step 2: Switch to main
+git checkout main
+
+# Step 3: Pull latest
+git pull origin main
+
+# Step 4: Go back to your branch
+git checkout feature/backend-api
+
+# Step 5: Merge main into your branch
+git merge main
+
+# Step 6: Continue coding!</code></pre>
+
+            <h2>⚠️ Common Mistakes to Avoid</h2>
+
+            <div class="danger-box">
+                <h3>❌ DON'T: Pull Without Saving Work</h3>
+                <pre><code># You have uncommitted changes
+git pull origin main  # ❌ Will fail or overwrite!</code></pre>
+            </div>
+
+            <div class="success-box">
+                <h3>✅ DO: Stash First</h3>
+                <pre><code>git stash save "My work"
+git pull origin main
+git stash pop</code></pre>
+            </div>
+
+            <h2>🎯 Golden Rule</h2>
+
+            <div class="warning-box">
+                <h3>"Commit Early, Commit Often"</h3>
+                <pre><code>Every 30 minutes:
+git add .
+git commit -m "WIP: What I just did"
+
+Even if code doesn't work yet!
+Even if you'll change it later!
+Commits are FREE and SAFE!</code></pre>
+
+                <p><strong>Why?</strong></p>
+                <ul>
+                    <li>✅ Your work is saved</li>
+                    <li>✅ Easy to pull others' work</li>
+                    <li>✅ Easy to go back if you break something</li>
+                    <li>✅ Shows progress to leader</li>
+                    <li>✅ Meets hackathon's "commit every 3 hours" rule</li>
+                </ul>
+            </div>
+
+            <h2>✅ Summary</h2>
+
+            <div class="info-box">
+                <h3>Your Work is SAFE When:</h3>
+                <ul>
+                    <li>✅ You stash before pulling</li>
+                    <li>✅ You commit to a feature branch</li>
+                    <li>✅ You merge main into your branch after pulling</li>
+                </ul>
+
+                <h3>Your Work is LOST When:</h3>
+                <ul>
+                    <li>❌ You force pull without stashing (git reset --hard)</li>
+                    <li>❌ You delete files manually</li>
+                    <li>❌ You don't commit and computer crashes</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Team creativity-minds | ByteQuest 2026 | Good luck! 🚀</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="chat-widget.js"></script>
+</body>
+
+</html>

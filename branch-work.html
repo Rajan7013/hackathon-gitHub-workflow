@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Branch Work - ByteQuest Guide</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="chat-widget.css">
+</head>
+
+<body>
+    <div class="container">
+        <nav class="nav">
+            <div class="nav-left">
+                <a href="index.html">📚 Main</a>
+                <a href="team-workflow.html">👥 Team</a>
+                <a href="safe-pull.html">🔄 Pull</a>
+                <a href="git-commands.html">💻 Commands</a>
+                <a href="branch-work.html" class="active">🌿 Branch</a>
+                <a href="commits-count.html">✅ Commits</a>
+            </div>
+            <div class="nav-right">
+                <button class="speaker-btn-small" id="speakBtn" onclick="toggleSpeech()">🔊 Read</button>
+                <button class="speaker-btn-small" onclick="stopSpeech()">⏹️</button>
+            </div>
+        </nav>
+
+        <div class="content">
+            <h2>🎯 What This Guide Is For</h2>
+
+            <div class="info-box">
+                <p><strong>Scenario:</strong> You want to work on your feature WITHOUT merging to main yet.</p>
+                <p><strong>Why?</strong></p>
+                <ul>
+                    <li>Your code is not ready</li>
+                    <li>Still testing and fixing bugs</li>
+                    <li>Don't want to affect main branch</li>
+                    <li>Want to work independently</li>
+                </ul>
+            </div>
+
+            <h2>📋 Simple Workflow: Work Independently</h2>
+
+            <h3>Step 1: Clone Repository (First Time Only)</h3>
+            <pre><code># Open terminal
+cd Desktop
+
+# Clone repository
+git clone https://github.com/Rajan7013/GFGBQ-Team-creativity-minds.git
+
+# Enter the folder
+cd GFGBQ-Team-creativity-minds</code></pre>
+
+            <div class="success-box">
+                <p><strong>What You Have Now:</strong></p>
+                <pre><code>Desktop/
+└── GFGBQ-Team-creativity-minds/
+    ├── README.md
+    ├── .gitignore
+    └── (other files from main branch)</code></pre>
+                <p><strong>You're on:</strong> main branch</p>
+            </div>
+
+            <h3>Step 2: Create YOUR Branch</h3>
+            <pre><code># Create and switch to your branch
+git checkout -b feature/backend-api
+
+Output:
+Switched to a new branch 'feature/backend-api'</code></pre>
+
+            <div class="info-box">
+                <p><strong>What This Does:</strong></p>
+                <ul>
+                    <li>Creates a NEW branch called feature/backend-api</li>
+                    <li>Switches you to that branch</li>
+                    <li>This is YOUR workspace!</li>
+                </ul>
+            </div>
+
+            <h3>Check:</h3>
+            <pre><code>git branch
+
+Output:
+* feature/backend-api    ← You are here now!
+  main</code></pre>
+
+            <h3>Step 3: Work on Your Code (Independently!)</h3>
+            <pre><code># Create your files
+mkdir backend
+cd backend
+
+# Create your code files
+# backend/api.py
+# backend/models.py
+# backend/database.py
+
+# Test your code
+python test.py
+
+# Fix bugs
+# Add features
+# Keep working...</code></pre>
+
+            <div class="success-box">
+                <p><strong>Important:</strong></p>
+                <ul>
+                    <li>You're working on feature/backend-api branch</li>
+                    <li>Main branch is NOT affected</li>
+                    <li>No one else sees your code yet</li>
+                    <li>You can work freely!</li>
+                </ul>
+            </div>
+
+            <h3>Step 4: Commit Your Work (Save Progress)</h3>
+
+            <div class="warning-box">
+                <p><strong>Every 30 minutes or when you finish a small part:</strong></p>
+            </div>
+
+            <pre><code># Check what you changed
+git status
+
+# Add all changes
+git add .
+
+# Commit with message
+git commit -m "Add user authentication API"
+
+Output:
+[feature/backend-api a1b2c3d] Add user authentication API
+ 3 files changed, 150 insertions(+)
+ create mode 100644 backend/api.py
+ create mode 100644 backend/models.py</code></pre>
+
+            <div class="success-box">
+                <p><strong>What Happened:</strong></p>
+                <ul>
+                    <li>✅ Your work is saved on YOUR branch</li>
+                    <li>✅ Main branch is still unchanged</li>
+                    <li>✅ No one else affected</li>
+                </ul>
+            </div>
+
+            <h3>Step 5: Push Your Branch to GitHub (Backup!)</h3>
+            <pre><code># Push YOUR branch to GitHub
+git push origin feature/backend-api
+
+Output:
+Enumerating objects: 10, done.
+Writing objects: 100% (8/8), 2.5 KiB, done.
+To https://github.com/Rajan7013/GFGBQ-Team-creativity-minds.git
+ * [new branch]      feature/backend-api -> feature/backend-api</code></pre>
+
+            <div class="success-box">
+                <p><strong>What Happened:</strong></p>
+                <ul>
+                    <li>✅ Your branch is now on GitHub</li>
+                    <li>✅ It's backed up (safe if computer crashes)</li>
+                    <li>✅ Main branch is STILL unchanged</li>
+                    <li>✅ Your work is separate!</li>
+                </ul>
+            </div>
+
+            <h3>Where It Is:</h3>
+            <pre><code>GitHub Repository
+├── main                    ← Unchanged!
+└── feature/backend-api     ← Your branch here!</code></pre>
+
+            <h3>Step 6: Continue Working (Days/Hours Later)</h3>
+            <pre><code># Make sure you're on your branch
+git checkout feature/backend-api
+
+# Continue coding
+# Add more features
+# Fix bugs
+# Test
+
+# Commit again
+git add .
+git commit -m "Add database integration"
+
+# Push again
+git push origin feature/backend-api</code></pre>
+
+            <div class="info-box">
+                <p><strong>Your branch keeps growing, main is still untouched!</strong></p>
+            </div>
+
+            <h3>Step 7: When You're FINALLY Ready (Code Complete!)</h3>
+
+            <div class="success-box">
+                <p><strong>Your code is done, tested, working!</strong></p>
+            </div>
+
+            <pre><code># Final commit
+git add .
+git commit -m "✅ Complete backend API - all tests passing"
+
+# Final push
+git push origin feature/backend-api</code></pre>
+
+            <h3>Step 8: Create Pull Request (Ask Leader to Review)</h3>
+
+            <p><strong>Go to GitHub:</strong></p>
+            <pre><code>https://github.com/Rajan7013/GFGBQ-Team-creativity-minds</code></pre>
+
+            <p><strong>You'll see yellow banner:</strong></p>
+            <pre><code>┌─────────────────────────────────────────┐
+│ feature/backend-api had recent pushes  │
+│ [Compare & pull request]                │
+└─────────────────────────────────────────┘</code></pre>
+
+            <p><strong>Click "Compare & pull request"</strong></p>
+
+            <p><strong>Fill in:</strong></p>
+            <pre><code>Title: ✅ Backend API - Complete and Tested
+
+Description:
+## What I Did
+- User authentication
+- Database integration
+- API endpoints for CRUD operations
+- All tests passing
+
+## Ready for Review
+@Rajan7013 please review and merge when ready!</code></pre>
+
+            <p><strong>Click "Create pull request"</strong></p>
+
+            <h3>Step 9: Inform Leader</h3>
+            <pre><code>Discord/WhatsApp:
+"Hey @Leader, I've created PR for backend API.
+Everything is tested and working!
+Please review when you get a chance."</code></pre>
+
+            <h3>Step 10: Leader Reviews and Merges</h3>
+
+            <div class="info-box">
+                <p><strong>Leader will:</strong></p>
+                <ol>
+                    <li>Review your code</li>
+                    <li>Test it</li>
+                    <li>Approve</li>
+                    <li>Merge to main</li>
+                    <li>Delete your branch</li>
+                    <li>Inform team</li>
+                </ol>
+                <p><strong>You wait for leader's response!</strong></p>
+            </div>
+
+            <h2>🔄 Visual Workflow</h2>
+            <pre><code>DAY 1
+─────
+Clone repo
+    ↓
+Create branch (feature/backend-api)
+    ↓
+Work on code
+    ↓
+Commit (save progress)
+    ↓
+Push to GitHub (backup)
+    ↓
+Main branch = UNCHANGED ✅
+
+
+DAY 2
+─────
+Continue on same branch
+    ↓
+Work more
+    ↓
+Commit again
+    ↓
+Push again
+    ↓
+Main branch = STILL UNCHANGED ✅
+
+
+DAY 3
+─────
+Finish work
+    ↓
+Final commit
+    ↓
+Final push
+    ↓
+Create Pull Request
+    ↓
+Inform leader
+    ↓
+Wait for review
+    ↓
+Leader merges
+    ↓
+NOW main branch has your code! ✅</code></pre>
+
+            <h2>🎯 Key Points</h2>
+
+            <div class="success-box">
+                <h3>Your Branch is SEPARATE:</h3>
+                <ul>
+                    <li>✅ You can commit as many times as you want</li>
+                    <li>✅ You can push as many times as you want</li>
+                    <li>✅ Main branch is NOT affected</li>
+                    <li>✅ Other members are NOT affected</li>
+                </ul>
+            </div>
+
+            <div class="warning-box">
+                <h3>When to Merge:</h3>
+                <ul>
+                    <li>❌ NOT when you're still working</li>
+                    <li>❌ NOT when code has bugs</li>
+                    <li>❌ NOT when you're testing</li>
+                    <li>✅ ONLY when code is complete and tested</li>
+                </ul>
+            </div>
+
+            <div class="info-box">
+                <h3>How to Merge:</h3>
+                <ul>
+                    <li>❌ NOT directly (you don't merge yourself)</li>
+                    <li>✅ Create Pull Request</li>
+                    <li>✅ Leader reviews</li>
+                    <li>✅ Leader merges</li>
+                </ul>
+            </div>
+
+            <h2>📋 Commands Summary</h2>
+
+            <h3>First Time Setup:</h3>
+            <pre><code>git clone https://github.com/Rajan7013/GFGBQ-Team-creativity-minds.git
+cd GFGBQ-Team-creativity-minds
+git checkout -b feature/my-feature</code></pre>
+
+            <h3>While Working (Repeat Many Times):</h3>
+            <pre><code># Work on code...
+git add .
+git commit -m "Description of what I did"
+git push origin feature/my-feature</code></pre>
+
+            <h3>When Done:</h3>
+            <pre><code># Final commit
+git add .
+git commit -m "✅ Feature complete"
+git push origin feature/my-feature
+
+# Go to GitHub
+# Create Pull Request
+# Inform leader</code></pre>
+
+            <h2>✅ Summary</h2>
+
+            <div class="success-box">
+                <p><strong>Simple Workflow:</strong></p>
+                <ol>
+                    <li>Clone repo (once)</li>
+                    <li>Create your branch</li>
+                    <li>Work independently</li>
+                    <li>Commit often</li>
+                    <li>Push to YOUR branch</li>
+                    <li>When done → Create PR</li>
+                    <li>Leader merges</li>
+                </ol>
+                <p><strong>Main branch stays clean until leader merges your PR!</strong></p>
+                <p><strong>You can work for days/weeks on your branch without affecting anyone! 🚀</strong></p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Team creativity-minds | ByteQuest 2026 | Good luck! 🚀</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="chat-widget.js"></script>
+</body>
+
+</html>
